@@ -13,7 +13,7 @@ function selectHornType() {
     if(document.getElementById("radio-air-horn").checked == true) {
         document.getElementById("sound-image").src = "./assets/media/images/air-horn.svg";
         document.getElementById("horn-sound").src = "./assets/media/audio/air-horn.mp3";
-    } else if(document.getElementById("radio-car-horn").checked == true) {
+    } else if(document.querySelectorAll("#radio-car-horn").checked == true) {
         document.getElementById("sound-image").src = "./assets/media/images/car.svg";
         document.getElementById("horn-sound").src = "./assets/media/audio/car-horn.mp3"; 
     } else {
@@ -30,7 +30,7 @@ function selectHornType() {
 function sliderToNumber() {
     document.getElementById("volume-number").value = 
                             document.getElementById("volume-slider").value;
-    assignVolIcon;
+    assignVolIcon();
 }
 
 /* 
@@ -41,7 +41,8 @@ function numberToSlider() {
 
     document.getElementById("volume-slider").value = 
                             document.getElementById("volume-number").value;
-    assignVolIcon;
+    console.log(document.getElementById("volume-slider").value);
+    assignVolIcon();
 }
 /* 
     assign the correct volume icon depending on the sound level on the volume number
@@ -66,8 +67,8 @@ function assignVolIcon() {
 }
 
 //add an input event that will trigger slider volume to update in response of volume number
-(document.getElementById("volume-numer")).addEventListener("input", numberToSlider);
+(document.getElementById("volume-number")).addEventListener("input", numberToSlider);
 //add an input event that will trigger volume number to update in response of slider
-(document.getElementById("volume-slider")).addEventListener("input", sliderToNumber);
+(document.getElementById("volume-slider")).addEventListener("change", sliderToNumber);
 
-document.addEventListener("change", selectHornType);
+(document.querySelectorAll('input[name="radio-sound"]')).addEventListener( selectHornType);
